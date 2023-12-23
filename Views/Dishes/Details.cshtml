@@ -1,0 +1,58 @@
+﻿@model WebApplication1.Models.Dish
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Dish</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Image")
+        <dt/>
+        <dd class = "col-sm-10">
+            <img src="@ViewBag.ImageDataUrl" />
+        <dd/>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RecipeId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayName(string.Join(", ", Model.Products.Select(product => product.Name)))
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+        <form asp-action="UploadImage" asp-route-id="@Model?.Id"
+            method="post" 
+            enctype="multipart/form-data">
+            <input type="file" id="file1" 
+                name="file1" 
+                multiple="multiple" />
+            <button type="submit">Upload File(s)</button>
+        </form>
+</div>
